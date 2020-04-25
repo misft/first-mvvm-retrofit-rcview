@@ -1,6 +1,8 @@
 package com.example.recyclerretrofit2
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         // Mengamati perubahan yang ada pada model kita
         // Dan kita pasangkan adapter yang telah kita buat ke RecyclerView kita
         mainViewModel.getTodos().observe(this, Observer<List<TodosModel>> {
-            rcView.adapter = RecyclerAdapter(it)
+            if(it != null) {
+                Log.d("Dinding merinding", it.size.toString())
+            }
         })
     }
 }
