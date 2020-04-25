@@ -4,17 +4,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
+    // Membuat URL
     private final val URL = "https://jsonplaceholder.typicode.com/"
 
-    public fun getRetrofitInstance() : Retrofit {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        return retrofit
-    }
+    // Untuk membuat object Retrofit
+    val retrofit = Retrofit.Builder()
+        .baseUrl(URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
+
+    // Membuat service yang nantinya akan dibuat
+    // untuk menembak API pada MainActivity
     public fun apiCall() : ApiService {
-        return getRetrofitInstance().create(ApiService::class.java)
+        return retrofit.create(ApiService::class.java)
     }
 }
